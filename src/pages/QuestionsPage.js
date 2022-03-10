@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import QuestionBox from "../components/QuestionBox";
 import { getData } from "../services/getQuestions";
-import '../main.css'
+import Gameover from "./GameoverPage";
+import "../main.css";
 
 function QuestionsPage() {
   const [questions, setQuestions] = useState([]);
@@ -24,7 +25,7 @@ function QuestionsPage() {
 
   const handleClickA = (e) => {
     if (index < 9) {
-      console.log("mal ahre");  
+      console.log("mal ahre");
       document.getElementById("box").classList.add("styledQuestionFail");
       setTimeout(() => {
         document.getElementById("box").classList.remove("styledQuestionFail");
@@ -57,7 +58,9 @@ function QuestionsPage() {
   };
 
   return (
-    <div className="centeredDiv">{questions.length !== 0 && questions[index]}</div>
+    <div className="centeredDiv">
+      {index === 9 ? <Gameover/> : questions.length !== 0 && questions[index]}
+    </div>
   );
 }
 
